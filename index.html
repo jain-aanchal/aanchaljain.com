@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aanchal Jain — Fractional CTO</title>
+<meta name="description" content="Aanchal Jain is a Fractional CTO helping startups and scaling companies build world-class engineering organizations with 20+ years of leadership experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #F6F4F0;
+    --charcoal: #1A1A1A;
+    --warm-gray: #8A8580;
+    --accent: #B8956A;
+    --accent-light: #D4BC9A;
+    --soft-line: #E2DED8;
+    --white: #FEFDFB;
+    --deep: #0F0F0F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--charcoal);
+    line-height: 1.7;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent-light);
+    color: var(--charcoal);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(246, 244, 240, 0.85);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s ease, padding 0.4s ease;
+  }
+
+  nav.scrolled {
+    border-bottom-color: var(--soft-line);
+    padding: 1rem 4rem;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--charcoal); }
+
+  .nav-cta {
+    background: var(--charcoal) !important;
+    color: var(--ivory) !important;
+    padding: 0.6rem 1.6rem;
+    border-radius: 2px;
+    transition: background 0.3s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent) !important;
+    transform: translateY(-1px);
+  }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .hamburger span {
+    width: 24px;
+    height: 1.5px;
+    background: var(--charcoal);
+    transition: 0.3s;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 12%;
+    right: 6%;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    max-width: 800px;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.15rem;
+    color: var(--warm-gray);
+    max-width: 520px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-actions {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--charcoal);
+    color: var(--ivory);
+    padding: 1rem 2.4rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--soft-line);
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--charcoal);
+    border-color: var(--charcoal);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 4rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--soft-line);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .stat h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+
+  .stat p {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-top: 0.4rem;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 7rem 4rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    background: var(--white);
+    border-top: 1px solid var(--soft-line);
+    border-bottom: 1px solid var(--soft-line);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--warm-gray);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .about-text p:first-of-type {
+    color: var(--charcoal);
+    font-size: 1.15rem;
+  }
+
+  .about-credentials {
+    padding-top: 1rem;
+  }
+
+  .headshot-wrap {
+    margin-bottom: 2.5rem;
+  }
+
+  .headshot {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--soft-line);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .credential {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--soft-line);
+  }
+
+  .credential:first-child {
+    border-top: 1px solid var(--soft-line);
+  }
+
+  .credential h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .credential p {
+    font-size: 0.95rem;
+    color: var(--charcoal);
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--soft-line);
+    margin-top: 1rem;
+  }
+
+  .service-card {
+    background: var(--ivory);
+    padding: 3rem 2.5rem;
+    transition: background 0.4s, transform 0.3s;
+    cursor: default;
+  }
+
+  .service-card:hover {
+    background: var(--white);
+    transform: translateY(-3px);
+  }
+
+  .service-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--soft-line);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  .service-card p {
+    color: var(--warm-gray);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  /* ─── EXPERIENCE ─── */
+  .experience {
+    background: var(--deep);
+    color: var(--ivory);
+  }
+
+  .experience .section-title { color: var(--ivory); }
+
+  .exp-timeline {
+    max-width: 800px;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: start;
+  }
+
+  .exp-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--accent-light);
+  }
+
+  .exp-role {
+    font-size: 1rem;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    background: var(--white);
+    border-top: 1px solid var(--soft-line);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .testimonial-card {
+    padding: 3rem;
+    border: 1px solid var(--soft-line);
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--accent-light);
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    line-height: 1;
+    opacity: 0.5;
+  }
+
+  .testimonial-card blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--warm-gray);
+  }
+
+  .testimonial-author strong {
+    color: var(--charcoal);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ─── INSIGHTS ─── */
+  .insights {
+    border-top: 1px solid var(--soft-line);
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .insight-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .insight-card:hover { transform: translateY(-4px); }
+
+  .insight-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .insight-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin: 0.8rem 0;
+    line-height: 1.4;
+  }
+
+  .insight-card p {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    line-height: 1.6;
+  }
+
+  .insight-date {
+    font-size: 0.75rem;
+    color: var(--soft-line);
+    margin-top: 1rem;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--deep);
+    color: var(--ivory);
+    text-align: center;
+    padding: 8rem 4rem;
+  }
+
+  .contact .section-title {
+    color: var(--ivory);
+    margin: 0 auto 1.5rem;
+    max-width: 500px;
+  }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.45);
+    max-width: 450px;
+    margin: 0 auto 3rem;
+    font-size: 1.05rem;
+  }
+
+  .contact .btn-primary {
+    background: var(--accent);
+    color: var(--deep);
+    font-weight: 500;
+  }
+
+  .contact .btn-primary:hover {
+    background: var(--accent-light);
+  }
+
+  .contact-email {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .contact-email a {
+    color: var(--accent-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,149,106,0.3);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,0.2);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  footer a:hover { color: var(--accent-light); }
+
+  .footer-links { display: flex; gap: 2rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2.5rem; }
+    section, .hero { padding-left: 2.5rem; padding-right: 2.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 3rem; }
+    footer { padding: 2rem 2.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { 
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--ivory);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 1rem; }
+    .hamburger { display: flex; }
+    section, .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 7rem; min-height: auto; padding-bottom: 4rem; }
+    .hero-stats { flex-direction: column; gap: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .contact { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Aanchal Jain</a>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+    <li><a href="#insights" onclick="closeMenu()">Insights</a></li>
+    <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <p class="hero-eyebrow">Fractional CTO</p>
+  <h1>Technology leadership,<br><em>without</em> the full‑time overhead</h1>
+  <p class="hero-sub">I partner with founders and boards to build engineering organizations that scale — bringing 20+ years of experience from Block, Slack, and high-growth startups.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+    <a href="#services" class="btn-ghost">Explore Services</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <h3>20+</h3>
+      <p>Years in Engineering Leadership</p>
+    </div>
+    <div class="stat">
+      <h3>3</h3>
+      <p>Patents Held</p>
+    </div>
+    <div class="stat">
+      <h3>6+</h3>
+      <p>Companies Scaled</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Building what matters, leading who matters</h2>
+      <p>I've spent two decades in the trenches of engineering leadership — from early-stage startups to publicly traded companies. I've led teams at Block (Square), Slack, Quantcast, and Razer, shipping products used by millions.</p>
+      <p>As a Fractional CTO, I bring that depth to founders who need strategic technology leadership without the commitment of a full-time executive hire. Whether you're navigating your first technical hire or architecting for scale, I help you make decisions with confidence.</p>
+      <p>I'm especially passionate about helping companies leverage AI and modern tech stacks to create competitive advantages — turning technology from a cost center into a growth engine.</p>
+    </div>
+    <div class="about-credentials reveal">
+      <div class="headshot-wrap">
+        <img class="headshot" src="images/headshot.png" alt="Aanchal Jain headshot">
+      </div>
+      <div class="credential">
+        <h4>Education</h4>
+        <p>M.Sc. Computer Science — University of Texas Dallas</p>
+        <p>B.Sc. — University of Westminster</p>
+      </div>
+      <div class="credential">
+        <h4>Patents</h4>
+        <p>3 patents in mobile software innovation</p>
+      </div>
+      <div class="credential">
+        <h4>Specializations</h4>
+        <p>AI Strategy · Platform Architecture · Engineering Culture · Technical Due Diligence · Team Scaling</p>
+      </div>
+      <div class="credential">
+        <h4>Based in</h4>
+        <p>San Francisco Bay Area, CA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label reveal">Services</p>
+  <h2 class="section-title reveal">How I can help</h2>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <h3>AI & Technology Strategy</h3>
+      <p>Identify high-impact AI opportunities, build your roadmap, and ensure your tech stack is positioned for the next wave — not the last one.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <h3>Engineering Organization Design</h3>
+      <p>Structure teams, hiring plans, and engineering culture that attract top talent and ship reliably. From your first engineer to your fiftieth.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <h3>Architecture & Scalability</h3>
+      <p>Review and redesign your platform architecture to handle growth without accumulating the technical debt that slows you down later.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <h3>Technical Due Diligence</h3>
+      <p>For investors and boards — a thorough assessment of engineering quality, team capability, and technical risk before major decisions.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <h3>Interim CTO Leadership</h3>
+      <p>Step in during transitions to keep engineering momentum. Provide steady leadership while you search for your permanent technical leader.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">06</div>
+      <h3>Founder Technical Coaching</h3>
+      <p>One-on-one guidance for non-technical founders learning to evaluate, manage, and communicate with their engineering teams effectively.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <p class="section-label reveal" style="color: var(--accent-light);">Track Record</p>
+  <h2 class="section-title reveal">Where I've led</h2>
+  <div class="exp-timeline">
+    <div class="exp-item reveal">
+      <div class="exp-company">Block (Square)</div>
+      <div>
+        <p class="exp-role">Director of Engineering</p>
+        <p class="exp-desc">Led platform engineering initiatives powering financial products at scale for millions of merchants and consumers.</p>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-company">Slack</div>
+      <div>
+        <p class="exp-role">Senior Engineering Manager</p>
+        <p class="exp-desc">Scaled engineering teams and infrastructure during Slack's hyper-growth phase, serving enterprise customers worldwide.</p>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-company">Quantcast</div>
+      <div>
+        <p class="exp-role">Engineering Leadership</p>
+        <p class="exp-desc">Drove engineering for real-time audience measurement and advertising technology processing billions of data points daily.</p>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-company">Razer / Nextbit</div>
+      <div>
+        <p class="exp-role">Engineering Leadership</p>
+        <p class="exp-desc">Led mobile software engineering through acquisition and integration, resulting in patented innovations in cloud-mobile technology.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <p class="section-label reveal">Testimonials</p>
+  <h2 class="section-title reveal">What people say</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <blockquote>Aanchal brought clarity to our chaotic engineering org. Within weeks, she restructured our team, fixed our hiring pipeline, and gave us a roadmap we could actually execute on.</blockquote>
+      <p class="testimonial-author"><strong>Startup Founder</strong>Series A SaaS Company</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <blockquote>Her ability to translate complex technical decisions into business language was invaluable for our board. She thinks like a CTO and communicates like a CEO.</blockquote>
+      <p class="testimonial-author"><strong>Board Member</strong>Growth-Stage Fintech</p>
+    </div>
+  </div>
+  <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--warm-gray);" class="reveal"><em>Placeholder testimonials — replace with real client quotes as you gather them.</em></p>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <p class="section-label reveal">Insights</p>
+  <h2 class="section-title reveal">Thinking & writing</h2>
+  <div class="insights-grid">
+    <a href="#" class="insight-card reveal">
+      <span class="insight-tag">AI Strategy</span>
+      <h3>When to Bet on AI — And When to Wait</h3>
+      <p>A framework for founders evaluating whether AI is a genuine competitive advantage or an expensive distraction.</p>
+      <p class="insight-date">Coming Soon</p>
+    </a>
+    <a href="#" class="insight-card reveal">
+      <span class="insight-tag">Engineering Culture</span>
+      <h3>The First 10 Engineers: Hiring for Culture and Velocity</h3>
+      <p>What matters most when building your founding engineering team — and the mistakes that haunt you at 50 people.</p>
+      <p class="insight-date">Coming Soon</p>
+    </a>
+    <a href="#" class="insight-card reveal">
+      <span class="insight-tag">Fractional Leadership</span>
+      <h3>Why Every Seed-Stage Startup Needs a Part-Time CTO</h3>
+      <p>The case for fractional technical leadership before you can afford — or need — a full-time executive.</p>
+      <p class="insight-date">Coming Soon</p>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section class="contact" id="contact">
+  <p class="section-label" style="color: var(--accent-light);">Let's Talk</p>
+  <h2 class="section-title">Ready to build something exceptional?</h2>
+  <p class="contact-sub">I work with a handful of companies at a time to ensure deep, meaningful impact. Let's see if we're a fit.</p>
+  <a href="https://calendly.com/jain-aanchal" class="btn-primary" target="_blank" rel="noopener">Book a Discovery Call</a>
+  <p class="contact-email">Or reach me directly at <a href="/cdn-cgi/l/email-protection#0c64696060634c6d6d626f646d60666d6562226f6361"><span class="__cf_email__" data-cfemail="274f424b4b4867464649444f464b4d464e490944484a">[email&#160;protected]</span></a></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>&copy; 2026 Aanchal Jain. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/aanchaljain16/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="#" target="_blank">Twitter</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Close mobile menu
+  function closeMenu() {
+    document.querySelector('.nav-links').classList.remove('open');
+  }
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.
